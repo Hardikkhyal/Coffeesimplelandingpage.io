@@ -1,0 +1,449 @@
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cofry Solutions – Coffee Landing</title>
+  <style>
+    :root {
+      --bg: #4a3f3f;
+      --card: #e3c7b8;
+      --card-2: #e9cfc3;
+      --ink: #2a2322;
+      --sub: #8b6e61;
+      --accent: #f1b594;
+      --white: #ffffff;
+      --shadow: 0 10px 24px rgba(0,0,0,.15);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #4b4141;
+      color: var(--ink);
+      font: 16px/1.45 "Inter", sans-serif;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 28px auto;
+      background: var(--card-2);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .topbar {
+      background: #e5c6b7;
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+    .logo {
+      font-weight: 700;
+      color: #513b33;
+    }
+    nav {
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      gap: 32px;
+      color: #3d2f2a;
+      font-weight: 600;
+    }
+    nav a {
+      color: inherit;
+      text-decoration: none;
+      opacity: .85;
+    }
+    nav a:hover {
+      opacity: 1;
+    }
+    .search {
+      margin-left: auto;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 2px solid #6a4d43;
+      position: relative;
+    }
+    .hero {
+      position: relative;
+      height: 260px;
+      overflow: hidden;
+    }
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 28px 34px;
+      color: #fff;
+    }
+    .badge {
+      background: #fff;
+      color: #1e1b1b;
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 12px;
+    }
+    .hero h1 {
+      margin: 10px 0;
+      font-size: 44px;
+    }
+    .hero h1 .accent {
+      color: var(--accent);
+      font-weight: 800;
+    }
+    .shop-btn {
+      margin-top: 18px;
+      background: #fff;
+      color: #1b1b1b;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    section {
+      padding: 26px;
+    }
+    .section-title {
+      text-align: center;
+      margin: 6px 0;
+      color: #3a2f2b;
+      font-weight: 800;
+    }
+    .section-sub {
+      text-align: center;
+      color: #7a6157;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .cat-grid, .shake-row, .blog-grid {
+      display: grid;
+      gap: 18px;
+    }
+    .cat-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .cat-card {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      height: 150px;
+      box-shadow: var(--shadow);
+    }
+    .cat-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, .4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+    .overlay .chip {
+      background: rgba(255, 255, 255, .25);
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin: 4px;
+      font-weight: 700;
+      font-size: 12px;
+    }
+    .shake {
+      background: #debfb1;
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      position: relative;
+    }
+    .shake img {
+      width:400px;
+      height: 200px;
+       object-fit: cover;
+      margin-bottom: 8px;
+      border-radius: 18px;
+      
+    }
+    .likes {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #f1e7e2;
+      color: #6a5a54;
+      padding: 4px 8px;
+      font-size: 12px;
+      border-radius: 999px;
+    }
+    .shake h4 {
+      margin: 8px 0 2px;
+    }
+    .shake .price {
+      font-size: 13px;
+    }
+    .buy {
+      display: inline-block;
+      margin-top: 6px;
+      background: #34302f;
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      text-decoration: none;
+    }
+    .blog {
+      background: #debfb1;
+      border-radius: 18px;
+      padding: 12px;
+      box-shadow: var(--shadow);
+    }
+    .blog img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+    .blog h5 {
+      margin: 10px 0 4px;
+    }
+    .blog p {
+      margin: 0;
+      font-size: 12px;
+      color: #594840;
+    }
+    .pill {
+      background: #cfa795;
+      color: #342a27;
+      padding: 6px 10px;
+      font-size: 12px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-top: 8px;
+    }
+    footer {
+      background: #2a2322;
+      color: #e9d8d0;
+      padding: 28px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 28px;
+    }
+    footer h6 {
+      margin: 0 0 12px;
+      font-size: 15px;
+    }
+    footer a {
+      color: #d7c3ba;
+      text-decoration: none;
+      display: block;
+      margin: 7px 0;
+      font-size: 13px;
+    }
+    .foot-legal {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+    .foot-legal .btn {
+      background: #4a3b36;
+      color: #dccac1;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Top bar -->
+    <div class="topbar">
+      <div class="logo">Cofry solutions</div>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Menu</a>
+        <a href="#">Blog</a>
+        <a href="#">Media</a>
+        <a href="#">Contact</a>
+      </nav>
+      <div class="search"></div>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+      <img src="https://images.unsplash.com/photo-1690983324515-d0faf73de6ca?q=80&w=1357&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/1000x260?text=Freshly+Roasted+Coffee" alt="Freshly Roasted Coffee Image">
+      <div class="hero-content">
+        <span class="badge">Freshly Roasted</span>
+        <h1><span class="accent">COFFEE</span></h1>
+        <a class="shop-btn" href="#">Shop now</a>
+      </div>
+    </div>
+
+    <!-- Top Categories -->
+    <section>
+      <h2 class="section-title">TOP CATEGORIES</h2>
+      <div class="section-sub">Explore The Recent Most Bought Drinks This Week</div>
+
+      <div class="cat-grid">
+        <div class="cat-card">
+          <img src="https://plus.unsplash.com/premium_photo-1723579489398-d1a2c37753f8?q=80&w=1139&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/400x300?text=Coffee+Mocha" alt="Coffee Mocha">
+          <div class="overlay">
+            <div class="chip">Coffee Mocha</div>
+            <div class="chip">View More</div>
+          </div>
+        </div>
+        <div class="cat-card">
+          <img src=https://images.unsplash.com/photo-1561630439-2ebfb3f7bcef?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/400x300?text=Espresso+Americano" alt="Espresso Americano">
+          <div class="overlay">
+            <div class="chip">Expresso Americano</div>
+            <div class="chip">View More</div>
+          </div>
+        </div>
+        <div class="cat-card">
+          <img src="https://images.unsplash.com/photo-1473923377535-0002805f57e8?q=80&w=1308&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/400x300?text=Cappuccino" alt="Cappuccino">
+          <div class="overlay">
+            <div class="chip">Cappuccino</div>
+            <div class="chip">View More</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Top Milk Shakes -->
+    <section>
+      <h2 class="section-title">TOP MILK SHAKES</h2>
+      <div class="section-sub">Explore The Recent Most Bought Shakes This Week</div>
+
+      <div class="shake-row">
+        <div class="shake">
+          <div class="likes">30 likes</div>
+          <img src="https://images.unsplash.com/photo-1728777183961-490973da4d22?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/100x150?text=Mocha+Shake" alt="Mocha Shake">
+          <h4>Mocha Shake</h4>
+          <div class="price">$20.00</div>
+          <a href="#" class="buy">BUY NOW</a>
+        </div>
+        <div class="shake">
+          <div class="likes">30 likes</div>
+          <img src="https://images.unsplash.com/photo-1722970592040-06ff670aa407?q=80&w=1331&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/100x150?text=Lavender+Shake" alt="Lavender Shake">
+          <h4>Lavender Shake</h4>
+          <div class="price">$20.00</div>
+          <a href="#" class="buy">BUY NOW</a>
+        </div>
+        <div class="shake">
+          <div class="likes">30 likes</div>
+          <img src="https://images.unsplash.com/photo-1496767849887-3d30e6d3e860?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/100x150?text=Caramel+Shake" alt="Caramel Shake">
+          <h4>Caramel Shake</h4>
+          <div class="price">$20.00</div>
+          <a href="#" class="buy">BUY NOW</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Latest Blogs -->
+    <section>
+      <h2 class="section-title">LATEST BLOGS</h2>
+      <div class="section-sub">Explore The Recent Most Bought Shakes This Week</div>
+
+      <div class="blog-grid">
+        <article class="blog">
+          <img src="https://plus.unsplash.com/premium_photo-1661295713927-94d1d0f88616?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/400x250?text=Coffee+Connoisseur+Blog+1" alt="Coffee Connoisseur">
+          <h5>Coffee Connoisseur</h5>
+          <p>Ah, coffee—the elixir of focus and comfort. Explore brewing methods, flavor notes, and cozy rituals that make every cup a moment.</p>
+          <span class="pill">READ MORE</span>
+        </article>
+        <article class="blog">
+          <img src="https://images.unsplash.com/photo-1622647306301-176abdc3f209?q=80&w=949&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/400x250?text=Coffee+Connoisseur+Blog+2" alt="Coffee Connoisseur">
+          <h5>Coffee Connoisseur</h5>
+          <p>From espresso to pour-over, we compare techniques so you can craft café-quality sips right at home—no fancy gear needed.</p>
+          <span class="pill">READ MORE</span>
+        </article>
+        <article class="blog">
+          <img src="https://images.unsplash.com/photo-1643881578966-1d6ea6d20de7?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/400x250?text=Coffee+Connoisseur+Blog+3" alt="Coffee Connoisseur">
+          <h5>Coffee Connoisseur</h5>
+          <p>Beans, grind, water, time—master the four variables and unlock richer, smoother brews tailored to your taste.</p>
+          <span class="pill">READ MORE</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <h6>Products</h6>
+          <a href="#">Shoes</a>
+          <a href="#">Coffee Beans</a>
+          <a href="#">Mugs</a>
+          <a href="#">Accessories</a>
+        </div>
+        <div>
+          <h6>Category</h6>
+          <a href="#">Men</a>
+          <a href="#">New in</a>
+          <a href="#">Weekly Pick</a>
+          <a href="#">Gift Cards</a>
+        </div>
+        <div>
+          <h6>Company Info</h6>
+          <a href="#">About us</a>
+          <a href="#">Contact us</a>
+          <a href="#">Payment Options</a>
+          <a href="#">Track Order</a>
+          <a href="#">Support</a>
+          <a href="#">Vouchers</a>
+          <a href="#">Size Charts</a>
+        </div>
+        <div>
+          <h6>Follow us</h6>
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Twitter</a>
+        </div>
+      </div>
+      <div class="foot-legal">
+        <button class="btn">Data settings</button>
+        <button class="btn">Cookie settings</button>
+        <button class="btn">Privacy Policy</button>
+        <button class="btn">Terms And Conditions</button>
+        <button class="btn">Imprint</button>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function toast(text) {
+      const t = document.createElement('div');
+      t.textContent = text;
+      t.style.cssText = "position:fixed;left:50%;top:18px;transform:translateX(-50%);background:#2a2322;color:#fff;padding:10px 14px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:9999;font-weight:700;font-size:13px";
+      document.body.appendChild(t);
+      setTimeout(() => { t.style.transition = "all .35s ease"; t.style.opacity = "0"; t.style.top = "0px"; }, 1200);
+      setTimeout(() => t.remove(), 1700);
+    }
+    document.querySelectorAll('.buy,.pill,.shop-btn').forEach(el => {
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        toast('Action completed 🎉');
+      });
+    });
+  </script>
+</body>
+</html>
