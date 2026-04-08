@@ -1,449 +1,2081 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cofry Solutions – Coffee Landing</title>
-  <style>
-    :root {
-      --bg: #4a3f3f;
-      --card: #e3c7b8;
-      --card-2: #e9cfc3;
-      --ink: #2a2322;
-      --sub: #8b6e61;
-      --accent: #f1b594;
-      --white: #ffffff;
-      --shadow: 0 10px 24px rgba(0,0,0,.15);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: #4b4141;
-      color: var(--ink);
-      font: 16px/1.45 "Inter", sans-serif;
-    }
-    .wrap {
-      max-width: 980px;
-      margin: 28px auto;
-      background: var(--card-2);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .topbar {
-      background: #e5c6b7;
-      padding: 14px 22px;
-      display: flex;
-      align-items: center;
-      gap: 22px;
-    }
-    .logo {
-      font-weight: 700;
-      color: #513b33;
-    }
-    nav {
-      margin-left: auto;
-      margin-right: auto;
-      display: flex;
-      gap: 32px;
-      color: #3d2f2a;
-      font-weight: 600;
-    }
-    nav a {
-      color: inherit;
-      text-decoration: none;
-      opacity: .85;
-    }
-    nav a:hover {
-      opacity: 1;
-    }
-    .search {
-      margin-left: auto;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      border: 2px solid #6a4d43;
-      position: relative;
-    }
-    .hero {
-      position: relative;
-      height: 260px;
-      overflow: hidden;
-    }
-    .hero img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .hero-content {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 28px 34px;
-      color: #fff;
-    }
-    .badge {
-      background: #fff;
-      color: #1e1b1b;
-      display: inline-block;
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 12px;
-    }
-    .hero h1 {
-      margin: 10px 0;
-      font-size: 44px;
-    }
-    .hero h1 .accent {
-      color: var(--accent);
-      font-weight: 800;
-    }
-    .shop-btn {
-      margin-top: 18px;
-      background: #fff;
-      color: #1b1b1b;
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-weight: 700;
-      text-decoration: none;
-    }
-    section {
-      padding: 26px;
-    }
-    .section-title {
-      text-align: center;
-      margin: 6px 0;
-      color: #3a2f2b;
-      font-weight: 800;
-    }
-    .section-sub {
-      text-align: center;
-      color: #7a6157;
-      font-size: 13px;
-      margin-bottom: 18px;
-    }
-    .cat-grid, .shake-row, .blog-grid {
-      display: grid;
-      gap: 18px;
-    }
-    .cat-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    .cat-card {
-      border-radius: 16px;
-      overflow: hidden;
-      position: relative;
-      height: 150px;
-      box-shadow: var(--shadow);
-    }
-    .cat-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, .4);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-    }
-    .overlay .chip {
-      background: rgba(255, 255, 255, .25);
-      padding: 6px 10px;
-      border-radius: 999px;
-      margin: 4px;
-      font-weight: 700;
-      font-size: 12px;
-    }
-    .shake {
-      background: #debfb1;
-      border-radius: 18px;
-      padding: 18px;
-      box-shadow: var(--shadow);
-      text-align: center;
-      position: relative;
-    }
-    .shake img {
-      width:400px;
-      height: 200px;
-       object-fit: cover;
-      margin-bottom: 8px;
-      border-radius: 18px;
-      
-    }
-    .likes {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: #f1e7e2;
-      color: #6a5a54;
-      padding: 4px 8px;
-      font-size: 12px;
-      border-radius: 999px;
-    }
-    .shake h4 {
-      margin: 8px 0 2px;
-    }
-    .shake .price {
-      font-size: 13px;
-    }
-    .buy {
-      display: inline-block;
-      margin-top: 6px;
-      background: #34302f;
-      color: #fff;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      text-decoration: none;
-    }
-    .blog {
-      background: #debfb1;
-      border-radius: 18px;
-      padding: 12px;
-      box-shadow: var(--shadow);
-    }
-    .blog img {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 14px;
-    }
-    .blog h5 {
-      margin: 10px 0 4px;
-    }
-    .blog p {
-      margin: 0;
-      font-size: 12px;
-      color: #594840;
-    }
-    .pill {
-      background: #cfa795;
-      color: #342a27;
-      padding: 6px 10px;
-      font-size: 12px;
-      border-radius: 999px;
-      display: inline-block;
-      margin-top: 8px;
-    }
-    footer {
-      background: #2a2322;
-      color: #e9d8d0;
-      padding: 28px;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      gap: 28px;
-    }
-    footer h6 {
-      margin: 0 0 12px;
-      font-size: 15px;
-    }
-    footer a {
-      color: #d7c3ba;
-      text-decoration: none;
-      display: block;
-      margin: 7px 0;
-      font-size: 13px;
-    }
-    .foot-legal {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin-top: 18px;
-      flex-wrap: wrap;
-    }
-    .foot-legal .btn {
-      background: #4a3b36;
-      color: #dccac1;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 6px;
-      font-size: 12px;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HSVV COFFEE CO. — Crafted with Soul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="wrap">
-    <!-- Top bar -->
-    <div class="topbar">
-      <div class="logo">Cofry solutions</div>
-      <nav>
-        <a href="#">Home</a>
-        <a href="#">Menu</a>
-        <a href="#">Blog</a>
-        <a href="#">Media</a>
-        <a href="#">Contact</a>
-      </nav>
-      <div class="search"></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <span class="logo-icon">☕</span>
+        <span class="logo-text">HSVV COFFEE</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#menu" class="nav-link">Menu</a></li>
+        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </nav>
 
-    <!-- Hero -->
-    <div class="hero">
-      <img src="https://images.unsplash.com/photo-1690983324515-d0faf73de6ca?q=80&w=1357&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/1000x260?text=Freshly+Roasted+Coffee" alt="Freshly Roasted Coffee Image">
-      <div class="hero-content">
-        <span class="badge">Freshly Roasted</span>
-        <h1><span class="accent">COFFEE</span></h1>
-        <a class="shop-btn" href="#">Shop now</a>
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <div class="hero-particles" id="particles"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow reveal-fade">Est. 2012 · Artisan Roasters</p>
+      <h1 class="hero-heading">
+        <span class="hero-line">Every cup,</span>
+        <span class="hero-line hero-line--italic">a story</span>
+        <span class="hero-line hero-line--typed" id="typedText"></span>
+      </h1>
+      <p class="hero-sub reveal-fade" style="--delay: 0.6s">
+        Hand-sourced beans. Precision brewed. Served with warmth.
+      </p>
+      <div class="hero-cta reveal-fade" style="--delay: 0.9s">
+        <a href="#menu" class="btn btn--primary">Explore Our Menu</a>
+        <a href="#about" class="btn btn--ghost">Our Story</a>
+      </div>
+      <div class="hero-scroll-hint">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
       </div>
     </div>
+    <div class="hero-badge">
+      <div class="badge-inner">
+        <span>Specialty</span>
+        <span>Coffee</span>
+        <span>Since 2012</span>
+      </div>
+    </div>
+  </section>
 
-    <!-- Top Categories -->
-    <section>
-      <h2 class="section-title">TOP CATEGORIES</h2>
-      <div class="section-sub">Explore The Recent Most Bought Drinks This Week</div>
-
-      <div class="cat-grid">
-        <div class="cat-card">
-          <img src="https://plus.unsplash.com/premium_photo-1723579489398-d1a2c37753f8?q=80&w=1139&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/400x300?text=Coffee+Mocha" alt="Coffee Mocha">
-          <div class="overlay">
-            <div class="chip">Coffee Mocha</div>
-            <div class="chip">View More</div>
+  <!-- ===== ABOUT ===== -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-images reveal-left">
+          <div class="about-img about-img--main">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80" alt="Barista crafting coffee" />
+          </div>
+          <div class="about-img about-img--secondary">
+            <img src="https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?w=400&q=80" alt="Coffee beans" />
+          </div>
+          <div class="about-stat-card glass-card">
+            <span class="stat-number">12+</span>
+            <span class="stat-label">Years of Craft</span>
           </div>
         </div>
-        <div class="cat-card">
-          <img src=https://images.unsplash.com/photo-1561630439-2ebfb3f7bcef?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/400x300?text=Espresso+Americano" alt="Espresso Americano">
-          <div class="overlay">
-            <div class="chip">Expresso Americano</div>
-            <div class="chip">View More</div>
-          </div>
-        </div>
-        <div class="cat-card">
-          <img src="https://images.unsplash.com/photo-1473923377535-0002805f57e8?q=80&w=1308&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/400x300?text=Cappuccino" alt="Cappuccino">
-          <div class="overlay">
-            <div class="chip">Cappuccino</div>
-            <div class="chip">View More</div>
+        <div class="about-content reveal-right">
+          <p class="section-eyebrow">Our Story</p>
+          <h2 class="section-heading">Born from a love<br/><em>of the perfect cup</em></h2>
+          <p class="about-body">
+            HSVV COFFEE began in a small corner of the city when founder Maria Santos returned from a trip through the highlands of Ethiopia and Colombia, carrying nothing but a suitcase and an obsession with extraordinary coffee.
+          </p>
+          <p class="about-body">
+            Today, we partner directly with over 20 farms across three continents — paying fair premiums, visiting annually, and ensuring every harvest meets our exacting standards before a single bean touches our roaster.
+          </p>
+          <div class="about-pillars">
+            <div class="pillar">
+              <i class="fa-solid fa-seedling pillar-icon"></i>
+              <div>
+                <strong>Direct Trade</strong>
+                <span>Farmer-first sourcing</span>
+              </div>
+            </div>
+            <div class="pillar">
+              <i class="fa-solid fa-fire-flame-curved pillar-icon"></i>
+              <div>
+                <strong>Small-Batch Roast</strong>
+                <span>Weekly, in-house</span>
+              </div>
+            </div>
+            <div class="pillar">
+              <i class="fa-solid fa-heart pillar-icon"></i>
+              <div>
+                <strong>Community</strong>
+                <span>Gathering place since 2012</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Top Milk Shakes -->
-    <section>
-      <h2 class="section-title">TOP MILK SHAKES</h2>
-      <div class="section-sub">Explore The Recent Most Bought Shakes This Week</div>
+  <!-- ===== MENU ===== -->
+  <section class="menu section" id="menu">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <p class="section-eyebrow">What We Brew</p>
+        <h2 class="section-heading">Our Signature <em>Menu</em></h2>
+        <p class="section-sub">Every item crafted with seasonal, responsibly sourced ingredients.</p>
+      </div>
+      <div class="menu-filter reveal-up" style="--delay: 0.2s">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="hot">Hot Drinks</button>
+        <button class="filter-btn" data-filter="cold">Cold Drinks</button>
+        <button class="filter-btn" data-filter="food">Food</button>
+      </div>
+      <div class="menu-grid" id="menuGrid">
 
-      <div class="shake-row">
-        <div class="shake">
-          <div class="likes">30 likes</div>
-          <img src="https://images.unsplash.com/photo-1728777183961-490973da4d22?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/100x150?text=Mocha+Shake" alt="Mocha Shake">
-          <h4>Mocha Shake</h4>
-          <div class="price">$20.00</div>
-          <a href="#" class="buy">BUY NOW</a>
+        <!-- Hot Drinks -->
+        <div class="menu-card glass-card reveal-up" data-category="hot" style="--delay: 0.1s">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&q=80" alt="Espresso" />
+            <span class="menu-badge">Bestseller</span>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-top">
+              <h3>Signature Espresso</h3>
+              <span class="menu-price">₹180</span>
+            </div>
+            <p>Bold Ethiopian Yirgacheffe pulled as a tight double shot with a hazelnut-hued crema.</p>
+            <div class="menu-card-meta">
+              <span><i class="fa-regular fa-clock"></i> 3 min</span>
+              <span><i class="fa-solid fa-mug-hot"></i> Hot</span>
+            </div>
+          </div>
         </div>
-        <div class="shake">
-          <div class="likes">30 likes</div>
-          <img src="https://images.unsplash.com/photo-1722970592040-06ff670aa407?q=80&w=1331&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/100x150?text=Lavender+Shake" alt="Lavender Shake">
-          <h4>Lavender Shake</h4>
-          <div class="price">$20.00</div>
-          <a href="#" class="buy">BUY NOW</a>
+
+        <div class="menu-card glass-card reveal-up" data-category="hot" style="--delay: 0.2s">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1561047029-3000c68339ca?w=400&q=80" alt="Flat White" />
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-top">
+              <h3>Velvet Flat White</h3>
+              <span class="menu-price">₹240</span>
+            </div>
+            <p>Ristretto shots balanced with micro-foam steamed whole milk — silky and precise.</p>
+            <div class="menu-card-meta">
+              <span><i class="fa-regular fa-clock"></i> 5 min</span>
+              <span><i class="fa-solid fa-mug-hot"></i> Hot</span>
+            </div>
+          </div>
         </div>
-        <div class="shake">
-          <div class="likes">30 likes</div>
-          <img src="https://images.unsplash.com/photo-1496767849887-3d30e6d3e860?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/100x150?text=Caramel+Shake" alt="Caramel Shake">
-          <h4>Caramel Shake</h4>
-          <div class="price">$20.00</div>
-          <a href="#" class="buy">BUY NOW</a>
+
+        <div class="menu-card glass-card reveal-up" data-category="hot" style="--delay: 0.3s">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&q=80" alt="Cappuccino" />
+            <span class="menu-badge">New</span>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-top">
+              <h3>Cloud Cappuccino</h3>
+              <span class="menu-price">₹220</span>
+            </div>
+            <p>Classic espresso crowned with airy dry-foam and a dusting of single-origin cacao.</p>
+            <div class="menu-card-meta">
+              <span><i class="fa-regular fa-clock"></i> 4 min</span>
+              <span><i class="fa-solid fa-mug-hot"></i> Hot</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cold Drinks -->
+        <div class="menu-card glass-card reveal-up" data-category="cold" style="--delay: 0.1s">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&q=80" alt="Cold Brew" />
+            <span class="menu-badge">Fan Fav</span>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-top">
+              <h3>Dark Matter Cold Brew</h3>
+              <span class="menu-price">₹280</span>
+            </div>
+            <p>18-hour cold-steeped Colombian concentrate over hand-chipped ice. Rich, never bitter.</p>
+            <div class="menu-card-meta">
+              <span><i class="fa-regular fa-clock"></i> Ready</span>
+              <span><i class="fa-solid fa-snowflake"></i> Cold</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card glass-card reveal-up" data-category="cold" style="--delay: 0.2s">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=400&q=80" alt="Iced Latte" />
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-top">
+              <h3>Oat Honey Latte</h3>
+              <span class="menu-price">₹260</span>
+            </div>
+            <p>House-made oat milk, wildflower honey, chilled espresso — sweet, earthy, refreshing.</p>
+            <div class="menu-card-meta">
+              <span><i class="fa-regular fa-clock"></i> 4 min</span>
+              <span><i class="fa-solid fa-snowflake"></i> Cold</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card glass-card reveal-up" data-category="cold" style="--delay: 0.3s">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1637866899143-2800f80af5e0?w=400&q=80" alt="Matcha" />
+            <span class="menu-badge">Vegan</span>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-top">
+              <h3>Jade Matcha Shake</h3>
+              <span class="menu-price">₹300</span>
+            </div>
+            <p>Ceremonial grade matcha blended with coconut milk and a whisper of vanilla bean.</p>
+            <div class="menu-card-meta">
+              <span><i class="fa-regular fa-clock"></i> 5 min</span>
+              <span><i class="fa-solid fa-snowflake"></i> Cold</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Food -->
+        <div class="menu-card glass-card reveal-up" data-category="food" style="--delay: 0.1s">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&q=80" alt="Croissant" />
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-top">
+              <h3>Butter Croissant</h3>
+              <span class="menu-price">₹140</span>
+            </div>
+            <p>French-style laminated dough, baked fresh each morning. Flaky, buttery, golden.</p>
+            <div class="menu-card-meta">
+              <span><i class="fa-regular fa-clock"></i> Daily</span>
+              <span><i class="fa-solid fa-wheat-awn"></i> Baked</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card glass-card reveal-up" data-category="food" style="--delay: 0.2s">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&q=80" alt="Avocado Toast" />
+            <span class="menu-badge">Chef's Pick</span>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-top">
+              <h3>Avocado Sourdough</h3>
+              <span class="menu-price">₹320</span>
+            </div>
+            <p>House-baked sourdough, smashed avocado, poached egg, chilli flakes, micro greens.</p>
+            <div class="menu-card-meta">
+              <span><i class="fa-regular fa-clock"></i> 8 min</span>
+              <span><i class="fa-solid fa-leaf"></i> Fresh</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card glass-card reveal-up" data-category="food" style="--delay: 0.3s">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&q=80" alt="Cake" />
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-top">
+              <h3>Hazelnut Layer Cake</h3>
+              <span class="menu-price">₹380</span>
+            </div>
+            <p>Three-layer sponge with praline cream, dark chocolate ganache, toasted hazelnuts.</p>
+            <div class="menu-card-meta">
+              <span><i class="fa-regular fa-clock"></i> Daily</span>
+              <span><i class="fa-solid fa-cake-candles"></i> Pastry</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="gallery section" id="gallery">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <p class="section-eyebrow">Atmosphere</p>
+        <h2 class="section-heading">A Glimpse <em>Inside</em></h2>
+      </div>
+      <div class="gallery-grid reveal-up" style="--delay: 0.3s">
+        <div class="gallery-item gallery-item--tall">
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&q=80" alt="Coffee shop interior" />
+          <div class="gallery-overlay"><span>Our Space</span></div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1493857671505-72967e2e2760?w=400&q=80" alt="Barista at work" />
+          <div class="gallery-overlay"><span>Craft</span></div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1485808191679-5f86510bd9d4?w=400&q=80" alt="Latte art" />
+          <div class="gallery-overlay"><span>Latte Art</span></div>
+        </div>
+        <div class="gallery-item gallery-item--wide">
+          <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=700&q=80" alt="Coffee and book" />
+          <div class="gallery-overlay"><span>Slow Mornings</span></div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=400&q=80" alt="Coffee beans close up" />
+          <div class="gallery-overlay"><span>The Beans</span></div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Latest Blogs -->
-    <section>
-      <h2 class="section-title">LATEST BLOGS</h2>
-      <div class="section-sub">Explore The Recent Most Bought Shakes This Week</div>
-
-      <div class="blog-grid">
-        <article class="blog">
-          <img src="https://plus.unsplash.com/premium_photo-1661295713927-94d1d0f88616?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/400x250?text=Coffee+Connoisseur+Blog+1" alt="Coffee Connoisseur">
-          <h5>Coffee Connoisseur</h5>
-          <p>Ah, coffee—the elixir of focus and comfort. Explore brewing methods, flavor notes, and cozy rituals that make every cup a moment.</p>
-          <span class="pill">READ MORE</span>
-        </article>
-        <article class="blog">
-          <img src="https://images.unsplash.com/photo-1622647306301-176abdc3f209?q=80&w=949&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/400x250?text=Coffee+Connoisseur+Blog+2" alt="Coffee Connoisseur">
-          <h5>Coffee Connoisseur</h5>
-          <p>From espresso to pour-over, we compare techniques so you can craft café-quality sips right at home—no fancy gear needed.</p>
-          <span class="pill">READ MORE</span>
-        </article>
-        <article class="blog">
-          <img src="https://images.unsplash.com/photo-1643881578966-1d6ea6d20de7?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/400x250?text=Coffee+Connoisseur+Blog+3" alt="Coffee Connoisseur">
-          <h5>Coffee Connoisseur</h5>
-          <p>Beans, grind, water, time—master the four variables and unlock richer, smoother brews tailored to your taste.</p>
-          <span class="pill">READ MORE</span>
-        </article>
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="testimonials section" id="testimonials">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <p class="section-eyebrow">Kind Words</p>
+        <h2 class="section-heading">What Our Guests <em>Say</em></h2>
       </div>
-    </section>
+      <div class="testimonial-wrapper reveal-up" style="--delay: 0.3s">
+        <div class="testimonial-track" id="testimonialTrack">
 
-    <!-- Footer -->
-    <footer>
+          <div class="testimonial-slide">
+            <div class="testimonial-card glass-card">
+              <div class="stars">★★★★★</div>
+              <p class="testimonial-text">
+                "HSVV COFFEE isn't just a coffee shop — it's my morning ritual. The Dark Matter Cold Brew is unlike anything I've tasted. Staff always remember my order. This place has a genuine soul."
+              </p>
+              <div class="testimonial-author">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Priya M" />
+                <div>
+                  <strong>Priya Mehta</strong>
+                  <span>Architect, Mumbai</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-slide">
+            <div class="testimonial-card glass-card">
+              <div class="stars">★★★★★</div>
+              <p class="testimonial-text">
+                "I've visited over 200 specialty coffee shops globally. HSVV COFFEE makes it into my top ten without hesitation. The sourcing story, the roast precision, and the atmosphere — truly world-class."
+              </p>
+              <div class="testimonial-author">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="James T" />
+                <div>
+                  <strong>James Thornton</strong>
+                  <span>Coffee Critic, London</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-slide">
+            <div class="testimonial-card glass-card">
+              <div class="stars">★★★★★</div>
+              <p class="testimonial-text">
+                "The Avocado Sourdough toast paired with the Velvet Flat White is my standard weekend breakfast. I drive 40 minutes just for this combination. Zero regrets, every single time."
+              </p>
+              <div class="testimonial-author">
+                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Anika R" />
+                <div>
+                  <strong>Anika Rao</strong>
+                  <span>Yoga Instructor, Delhi</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-slide">
+            <div class="testimonial-card glass-card">
+              <div class="stars">★★★★★</div>
+              <p class="testimonial-text">
+                "The ambiance is warm and calming, perfect for remote work. Fast Wi-Fi, great playlists, staff who respect your focus. HSVV COFFEE gets everything right that most coffee shops get wrong."
+              </p>
+              <div class="testimonial-author">
+                <img src="https://randomuser.me/api/portraits/men/76.jpg" alt="Rohan S" />
+                <div>
+                  <strong>Rohan Singh</strong>
+                  <span>Freelance Developer, Bangalore</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="testimonial-controls">
+          <button class="tctl tctl--prev" id="prevBtn" aria-label="Previous">
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+          <div class="testimonial-dots" id="testimonialDots"></div>
+          <button class="tctl tctl--next" id="nextBtn" aria-label="Next">
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+          <p class="section-eyebrow">Find Us</p>
+          <h2 class="section-heading">Come say <em>hello</em></h2>
+          <p class="contact-body">We'd love to host you. Walk in any day of the week, or send us a note — we read every message.</p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div>
+                <strong>Address</strong>
+                <span>42 Bean Street, Bandra West<br/>Mumbai, Maharashtra 400050</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+              <div>
+                <strong>Hours</strong>
+                <span>Mon–Fri: 7:00 AM – 9:00 PM<br/>Sat–Sun: 8:00 AM – 10:00 PM</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+              <div>
+                <strong>Phone</strong>
+                <span>+91 98765 43210</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form-wrap reveal-right">
+          <form class="contact-form glass-card" id="contactForm" novalidate>
+            <h3>Send a Message</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="fname" placeholder="Maria" required />
+              </div>
+              <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lname" placeholder="Santos" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="hello@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject">
+                <option value="">— Select a topic —</option>
+                <option>General Enquiry</option>
+                <option>Private Events</option>
+                <option>Wholesale Beans</option>
+                <option>Feedback</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="4" placeholder="Tell us what's on your mind..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary btn--full">
+              <span>Send Message</span>
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+            <div class="form-success" id="formSuccess">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Thank you! We'll get back to you soon.</span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
       <div class="footer-grid">
-        <div>
-          <h6>Products</h6>
-          <a href="#">Shoes</a>
-          <a href="#">Coffee Beans</a>
-          <a href="#">Mugs</a>
-          <a href="#">Accessories</a>
+        <div class="footer-brand">
+          <a href="#home" class="nav-logo footer-logo">
+            <span class="logo-icon">☕</span>
+            <span class="logo-text">HSVV COFFEE</span>
+          </a>
+          <p>Crafted with passion, served with soul. Your neighborhood specialty coffee destination since 2012.</p>
         </div>
-        <div>
-          <h6>Category</h6>
-          <a href="#">Men</a>
-          <a href="#">New in</a>
-          <a href="#">Weekly Pick</a>
-          <a href="#">Gift Cards</a>
+        <div class="footer-links-group">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
         </div>
-        <div>
-          <h6>Company Info</h6>
-          <a href="#">About us</a>
-          <a href="#">Contact us</a>
-          <a href="#">Payment Options</a>
-          <a href="#">Track Order</a>
-          <a href="#">Support</a>
-          <a href="#">Vouchers</a>
-          <a href="#">Size Charts</a>
+        <div class="footer-links-group">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Bean Subscriptions</a></li>
+            <li><a href="#">Private Events</a></li>
+            <li><a href="#">Barista Classes</a></li>
+            <li><a href="#">Wholesale</a></li>
+          </ul>
         </div>
-        <div>
-          <h6>Follow us</h6>
-          <a href="#">Instagram</a>
-          <a href="#">Facebook</a>
-          <a href="#">Twitter</a>
+        <div class="footer-social-group">
+          <h4>Follow Along</h4>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-link" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-link" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+          </div>
+          <p class="footer-newsletter-label">Subscribe for seasonal updates</p>
+          <div class="footer-newsletter">
+            <input type="email" placeholder="your@email.com" />
+            <button>Go</button>
+          </div>
         </div>
       </div>
-      <div class="foot-legal">
-        <button class="btn">Data settings</button>
-        <button class="btn">Cookie settings</button>
-        <button class="btn">Privacy Policy</button>
-        <button class="btn">Terms And Conditions</button>
-        <button class="btn">Imprint</button>
+      <div class="footer-bottom">
+        <p>&copy; 2026 HSVV COFFEE CO. Co. All rights reserved.</p>
+        <p>Made with ☕ &amp; love.</p>
       </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
-  <script>
-    function toast(text) {
-      const t = document.createElement('div');
-      t.textContent = text;
-      t.style.cssText = "position:fixed;left:50%;top:18px;transform:translateX(-50%);background:#2a2322;color:#fff;padding:10px 14px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:9999;font-weight:700;font-size:13px";
-      document.body.appendChild(t);
-      setTimeout(() => { t.style.transition = "all .35s ease"; t.style.opacity = "0"; t.style.top = "0px"; }, 1200);
-      setTimeout(() => t.remove(), 1700);
-    }
-    document.querySelectorAll('.buy,.pill,.shop-btn').forEach(el => {
-      el.addEventListener('click', e => {
-        e.preventDefault();
-        toast('Action completed 🎉');
-      });
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
+<style>
+  
+:root {
+  --clr-bg:          #f9f4ef;
+  --clr-bg-alt:      #f2ebe2;
+  --clr-dark:        #1c1007;
+  --clr-brown:       #6b3a1f;
+  --clr-brown-mid:   #8b4f2a;
+  --clr-brown-light: #c8855a;
+  --clr-cream:       #e8d5c0;
+  --clr-beige:       #d4b896;
+  --clr-gold:        #c9a84c;
+  --clr-white:       #ffffff;
+  --clr-text:        #3a2010;
+  --clr-text-soft:   #7a5c40;
+
+  --glass-bg:        rgba(255, 247, 237, 0.35);
+  --glass-border:    rgba(200, 133, 90, 0.25);
+  --glass-blur:      blur(14px);
+  --glass-shadow:    0 8px 32px rgba(107, 58, 31, 0.15);
+
+  --font-display:    'Playfair Display', Georgia, serif;
+  --font-body:       'Jost', sans-serif;
+
+  --radius-sm:       8px;
+  --radius-md:       16px;
+  --radius-lg:       24px;
+
+  --transition:      0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --max-width:       1200px;
+  --section-pad:     6rem 0;
+}
+
+/* ---- Reset & Base ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+img { display: block; max-width: 100%; object-fit: cover; }
+a  { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ---- Utility ---- */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section { padding: var(--section-pad); }
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--radius-md);
+}
+
+.section-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--clr-brown-light);
+  margin-bottom: 0.6rem;
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--clr-dark);
+  line-height: 1.2;
+  position: relative;
+  display: inline-block;
+}
+
+.section-heading em {
+  font-style: italic;
+  color: var(--clr-brown-mid);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-sub {
+  margin-top: 0.75rem;
+  color: var(--clr-text-soft);
+  font-size: 1rem;
+}
+
+/* Underline animation on headings */
+.section-heading::after {
+  content: '';
+  display: block;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, var(--clr-brown-light), var(--clr-gold));
+  border-radius: 2px;
+  margin-top: 0.4rem;
+  transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+}
+.section-heading.animated::after { width: 100%; }
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, var(--clr-brown), var(--clr-brown-mid));
+  color: var(--clr-white);
+  box-shadow: 0 6px 24px rgba(107, 58, 31, 0.4);
+}
+.btn--primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.15);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.btn--primary:hover::after { opacity: 1; }
+.btn--primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(107, 58, 31, 0.5); }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--clr-white);
+  border: 2px solid rgba(255,255,255,0.55);
+}
+.btn--ghost:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.9);
+  transform: translateY(-2px);
+}
+
+.btn--full { width: 100%; justify-content: center; }
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 1.4rem 0;
+  transition: background var(--transition), padding var(--transition), box-shadow var(--transition);
+}
+
+.navbar.scrolled {
+  background: rgba(28, 16, 7, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 0.9rem 0;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+}
+
+.nav-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--clr-white);
+}
+.logo-icon { font-size: 1.4rem; }
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  position: relative;
+  padding-bottom: 4px;
+  transition: color var(--transition);
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--clr-gold);
+  border-radius: 1px;
+  transition: width var(--transition);
+}
+.nav-link:hover, .nav-link.active { color: var(--clr-white); }
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--clr-white);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1600&q=80') center/cover no-repeat;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(28, 16, 7, 0.78) 0%,
+    rgba(107, 58, 31, 0.55) 60%,
+    rgba(28, 16, 7, 0.65) 100%
+  );
+}
+
+/* Floating particles */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.particle {
+  position: absolute;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: rgba(201, 168, 76, 0.6);
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(0) scale(1); opacity: 0.7; }
+  100% { transform: translateY(-100vh) scale(0.2); opacity: 0; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--clr-white);
+  padding: 0 1.5rem;
+  max-width: 820px;
+}
+
+.hero-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--clr-gold);
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.3s forwards;
+}
+
+.hero-heading {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: 1.05;
+  font-weight: 900;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+}
+
+.hero-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s ease forwards;
+}
+.hero-line:nth-child(1) { animation-delay: 0.5s; }
+.hero-line--italic { font-style: italic; color: var(--clr-brown-light); animation-delay: 0.75s; }
+.hero-line--typed  { font-size: 0.45em; font-style: normal; font-weight: 400; color: var(--clr-cream); animation-delay: 1s; min-height: 1.5em; }
+
+.hero-sub {
+  margin-top: 1.5rem;
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.78);
+  letter-spacing: 0.05em;
+  opacity: 0;
+  animation: fadeUp 0.8s ease var(--delay, 0.6s) forwards;
+}
+
+.hero-cta {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.8s ease var(--delay, 0.9s) forwards;
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.scroll-line {
+  width: 1px; height: 60px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+/* Rotating badge */
+.hero-badge {
+  position: absolute;
+  right: 5%;
+  bottom: 12%;
+  z-index: 3;
+}
+.badge-inner {
+  width: 110px; height: 110px;
+  border-radius: 50%;
+  border: 2px solid rgba(201, 168, 76, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  background: rgba(28, 16, 7, 0.55);
+  backdrop-filter: blur(8px);
+  animation: rotateBadge 20s linear infinite;
+}
+.badge-inner span {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clr-gold);
+}
+@keyframes rotateBadge {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about { background: var(--clr-bg); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.about-images {
+  position: relative;
+  height: 550px;
+}
+
+.about-img {
+  position: absolute;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(107, 58, 31, 0.2);
+}
+
+.about-img img {
+  width: 100%; height: 100%;
+  transition: transform 0.6s ease;
+}
+.about-img:hover img { transform: scale(1.05); }
+
+.about-img--main {
+  width: 78%; height: 72%;
+  top: 0; left: 0;
+  z-index: 2;
+}
+.about-img--secondary {
+  width: 52%; height: 52%;
+  bottom: 0; right: 0;
+  z-index: 3;
+  border: 5px solid var(--clr-bg);
+}
+
+.about-stat-card {
+  position: absolute;
+  top: 50%; left: 58%;
+  transform: translateY(-50%);
+  z-index: 4;
+  padding: 1.2rem 1.6rem;
+  text-align: center;
+}
+.stat-number {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--clr-brown);
+  line-height: 1;
+}
+.stat-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clr-text-soft);
+  margin-top: 0.2rem;
+}
+
+.about-body {
+  color: var(--clr-text-soft);
+  margin-top: 1rem;
+  font-size: 0.97rem;
+}
+
+.about-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.pillar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.pillar-icon {
+  width: 44px; height: 44px;
+  min-width: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--clr-brown-light), var(--clr-gold));
+  color: var(--clr-white);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pillar div { display: flex; flex-direction: column; }
+.pillar strong { font-size: 0.92rem; font-weight: 600; color: var(--clr-dark); }
+.pillar span   { font-size: 0.8rem; color: var(--clr-text-soft); }
+
+/* ============================================================
+   MENU
+   ============================================================ */
+.menu {
+  background: var(--clr-bg-alt);
+  position: relative;
+  overflow: hidden;
+}
+.menu::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.menu-filter {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.filter-btn {
+  padding: 0.5rem 1.4rem;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--clr-text-soft);
+  border: 1.5px solid var(--clr-cream);
+  background: transparent;
+  transition: var(--transition);
+}
+.filter-btn:hover,
+.filter-btn.active {
+  background: linear-gradient(135deg, var(--clr-brown), var(--clr-brown-mid));
+  color: var(--clr-white);
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(107, 58, 31, 0.35);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.8rem;
+}
+
+.menu-card {
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+  opacity: 1;
+}
+.menu-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(107, 58, 31, 0.2);
+}
+.menu-card.hidden {
+  display: none;
+}
+
+.menu-card-img {
+  height: 210px;
+  overflow: hidden;
+  position: relative;
+}
+.menu-card-img img {
+  width: 100%; height: 100%;
+  transition: transform 0.6s ease;
+}
+.menu-card:hover .menu-card-img img { transform: scale(1.08); }
+
+.menu-badge {
+  position: absolute;
+  top: 0.75rem; right: 0.75rem;
+  background: linear-gradient(135deg, var(--clr-brown), var(--clr-gold));
+  color: var(--clr-white);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.7rem;
+  border-radius: 50px;
+}
+
+.menu-card-body { padding: 1.3rem 1.4rem 1.5rem; }
+
+.menu-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.menu-card-top h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--clr-dark);
+}
+
+.menu-price {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--clr-brown);
+  white-space: nowrap;
+}
+
+.menu-card-body p {
+  font-size: 0.85rem;
+  color: var(--clr-text-soft);
+  line-height: 1.6;
+}
+
+.menu-card-meta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.9rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--clr-brown-light);
+}
+.menu-card-meta i { margin-right: 0.3rem; }
+
+/* ============================================================
+   GALLERY
+   ============================================================ */
+.gallery { background: var(--clr-bg); }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 1rem;
+}
+
+.gallery-item {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.gallery-item img {
+  width: 100%; height: 260px;
+  transition: transform 0.5s ease;
+}
+.gallery-item--tall { grid-row: span 2; }
+.gallery-item--tall img { height: 100%; }
+.gallery-item--wide { grid-column: span 2; }
+
+.gallery-item:hover img { transform: scale(1.08); }
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(28, 16, 7, 0.65), transparent);
+  display: flex;
+  align-items: flex-end;
+  padding: 1.2rem;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+.gallery-overlay span {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--clr-white);
+}
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+.testimonials { background: var(--clr-bg-alt); }
+
+.testimonial-wrapper { position: relative; overflow: hidden; }
+
+.testimonial-track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.testimonial-slide {
+  min-width: 100%;
+  padding: 0 1rem;
+}
+
+.testimonial-card {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2.5rem 2.8rem;
+  text-align: center;
+}
+
+.stars {
+  font-size: 1.3rem;
+  color: var(--clr-gold);
+  letter-spacing: 0.2em;
+  margin-bottom: 1.2rem;
+}
+
+.testimonial-text {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--clr-text);
+  line-height: 1.8;
+  margin-bottom: 1.8rem;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.testimonial-author img {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--clr-cream);
+}
+.testimonial-author div { text-align: left; }
+.testimonial-author strong { display: block; font-weight: 600; font-size: 0.93rem; color: var(--clr-dark); }
+.testimonial-author span  { font-size: 0.78rem; color: var(--clr-text-soft); }
+
+.testimonial-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.tctl {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--clr-beige);
+  background: transparent;
+  color: var(--clr-brown);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+.tctl:hover {
+  background: var(--clr-brown);
+  border-color: var(--clr-brown);
+  color: var(--clr-white);
+}
+
+.testimonial-dots { display: flex; gap: 0.5rem; align-items: center; }
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--clr-beige);
+  transition: var(--transition);
+  cursor: pointer;
+}
+.dot.active { background: var(--clr-brown); transform: scale(1.4); }
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact { background: var(--clr-bg); }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.contact-body {
+  color: var(--clr-text-soft);
+  margin-top: 1rem;
+  font-size: 0.97rem;
+}
+
+.contact-details { margin-top: 2.2rem; display: flex; flex-direction: column; gap: 1.4rem; }
+
+.contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+.contact-icon {
+  width: 44px; height: 44px; min-width: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--clr-brown), var(--clr-brown-mid));
+  color: var(--clr-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+.contact-item div { display: flex; flex-direction: column; }
+.contact-item strong { font-size: 0.88rem; font-weight: 600; color: var(--clr-dark); margin-bottom: 0.2rem; }
+.contact-item span  { font-size: 0.85rem; color: var(--clr-text-soft); line-height: 1.6; }
+
+/* Form */
+.contact-form {
+  padding: 2.2rem 2.4rem;
+}
+.contact-form h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--clr-dark);
+  margin-bottom: 1.6rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group { margin-bottom: 1.1rem; }
+.form-group label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--clr-text-soft);
+  margin-bottom: 0.4rem;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--clr-cream);
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.6);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--clr-text);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+  -webkit-appearance: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--clr-brown-light);
+  box-shadow: 0 0 0 3px rgba(200, 133, 90, 0.15);
+}
+.form-group textarea { resize: vertical; }
+.form-group select { cursor: pointer; }
+
+.form-success {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  background: rgba(107, 58, 31, 0.08);
+  color: var(--clr-brown);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+.form-success.show { display: flex; }
+.form-success i { font-size: 1.1rem; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: var(--clr-dark);
+  color: rgba(255,255,255,0.7);
+  padding: 5rem 0 2rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.footer-logo { margin-bottom: 1rem; }
+.footer-logo .logo-text { color: var(--clr-white); }
+.footer-brand p {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  margin-top: 0.8rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.footer-links-group h4,
+.footer-social-group h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--clr-white);
+  margin-bottom: 1.2rem;
+}
+
+.footer-links-group ul { display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-links-group a {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  transition: color var(--transition);
+}
+.footer-links-group a:hover { color: var(--clr-gold); }
+
+.social-links { display: flex; gap: 0.7rem; margin-bottom: 1.5rem; }
+.social-link {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.88rem;
+  transition: var(--transition);
+}
+.social-link:hover {
+  background: var(--clr-brown);
+  border-color: var(--clr-brown);
+  color: var(--clr-white);
+  transform: translateY(-3px);
+}
+
+.footer-newsletter-label {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 0.6rem;
+}
+.footer-newsletter {
+  display: flex;
+  gap: 0.4rem;
+}
+.footer-newsletter input {
+  flex: 1;
+  padding: 0.55rem 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.07);
+  color: var(--clr-white);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  outline: none;
+}
+.footer-newsletter input::placeholder { color: rgba(255,255,255,0.3); }
+.footer-newsletter button {
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--clr-brown);
+  color: var(--clr-white);
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  transition: background var(--transition);
+}
+.footer-newsletter button:hover { background: var(--clr-brown-mid); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 1.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.35);
+}
+
+/* ============================================================
+   SCROLL REVEAL ANIMATIONS
+   ============================================================ */
+.reveal-up,
+.reveal-left,
+.reveal-right,
+.reveal-fade {
+  opacity: 0;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-up    { transform: translateY(40px); }
+.reveal-left  { transform: translateX(-50px); }
+.reveal-right { transform: translateX(50px); }
+.reveal-fade  { transform: none; }
+
+/* With delay support */
+.reveal-up[style*='--delay'],
+.reveal-left[style*='--delay'],
+.reveal-right[style*='--delay'],
+.reveal-fade[style*='--delay'] {
+  transition-delay: var(--delay, 0s);
+}
+
+.revealed {
+  opacity: 1 !important;
+  transform: translate(0) !important;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .about-grid    { gap: 3rem; }
+  .footer-grid   { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  :root { --section-pad: 4rem 0; }
+
+  /* Nav */
+  .nav-toggle { display: flex; }
+  .nav-links {
+    position: fixed;
+    top: 0; right: -100%;
+    width: 75%;
+    max-width: 320px;
+    height: 100vh;
+    background: rgba(28, 16, 7, 0.97);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    transition: right var(--transition);
+    z-index: 999;
+  }
+  .nav-links.open { right: 0; }
+  .nav-link { font-size: 1.1rem; }
+
+  /* Hero */
+  .hero-badge { display: none; }
+  .hero-cta { flex-direction: column; align-items: center; }
+
+  /* About */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .about-images { height: 350px; }
+
+  /* Gallery */
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .gallery-item--tall { grid-row: span 1; }
+  .gallery-item--wide { grid-column: span 2; }
+  .gallery-item img { height: 200px; }
+  .gallery-item--wide img { height: 200px; }
+
+  /* Contact */
+  .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+  /* Footer */
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+
+  /* Form */
+  .form-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .menu-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .gallery-item--wide { grid-column: span 1; }
+  .contact-form { padding: 1.5rem 1.2rem; }
+  .testimonial-card { padding: 1.8rem 1.5rem; }
+}
+
+</style>
+<script>
+  /* ============================================================
+   HSVV COFFEE CO. — script.js
+   All interactivity: scroll effects, slider, typing, etc.
+   ============================================================ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ========================================================
+     1. NAVBAR — Transparent → Solid on Scroll + Active Links
+     ======================================================== */
+  const navbar    = document.getElementById('navbar');
+  const navLinks  = document.querySelectorAll('.nav-link');
+  const sections  = document.querySelectorAll('section[id]');
+  const navToggle = document.getElementById('navToggle');
+  const navMenu   = document.getElementById('navLinks');
+
+  // Change navbar background on scroll
+  function handleNavbarScroll() {
+    if (window.scrollY > 60) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  }
+
+  // Highlight active nav link based on current scroll position
+  function updateActiveLink() {
+    let currentSection = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 100;
+      if (window.scrollY >= sectionTop) {
+        currentSection = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${currentSection}`) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', () => {
+    handleNavbarScroll();
+    updateActiveLink();
+  }, { passive: true });
+
+  // Mobile menu toggle
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('open');
+    navMenu.classList.toggle('open');
+  });
+
+  // Close mobile menu on link click
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.classList.remove('open');
+      navMenu.classList.remove('open');
+    });
+  });
+
+
+  /* ========================================================
+     2. SMOOTH SCROLL — for all anchor links
+     ======================================================== */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+
+  /* ========================================================
+     3. HERO TYPING ANIMATION
+     ======================================================== */
+  const typedEl  = document.getElementById('typedText');
+  const phrases  = [
+    'Warmth in every sip.',
+    'Roasted with intention.',
+    'Sourced from highland farms.',
+    'Brewed by passionate hands.',
+  ];
+  let phraseIdx  = 0;
+  let charIdx    = 0;
+  let isDeleting = false;
+  let typingTimer;
+
+  function typeEffect() {
+    const current = phrases[phraseIdx];
+
+    if (isDeleting) {
+      typedEl.textContent = current.substring(0, charIdx - 1);
+      charIdx--;
+    } else {
+      typedEl.textContent = current.substring(0, charIdx + 1);
+      charIdx++;
+    }
+
+    // Add cursor blink via content
+    typedEl.setAttribute('data-cursor', '|');
+
+    let delay = isDeleting ? 60 : 90;
+
+    if (!isDeleting && charIdx === current.length) {
+      // Pause at end of phrase
+      delay = 2000;
+      isDeleting = true;
+    } else if (isDeleting && charIdx === 0) {
+      isDeleting = false;
+      phraseIdx  = (phraseIdx + 1) % phrases.length;
+      delay = 400;
+    }
+
+    typingTimer = setTimeout(typeEffect, delay);
+  }
+
+  // Start typing after hero animation delay
+  setTimeout(typeEffect, 1800);
+
+
+  /* ========================================================
+     4. FLOATING PARTICLES — Hero section
+     ======================================================== */
+  const particleContainer = document.getElementById('particles');
+  const PARTICLE_COUNT    = 18;
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    const p = document.createElement('div');
+    p.classList.add('particle');
+
+    // Random properties
+    const size = Math.random() * 4 + 2;
+    p.style.cssText = `
+      left:             ${Math.random() * 100}%;
+      bottom:           ${Math.random() * 20}%;
+      width:            ${size}px;
+      height:           ${size}px;
+      animation-duration: ${Math.random() * 8 + 6}s;
+      animation-delay:  ${Math.random() * 5}s;
+      opacity:          ${Math.random() * 0.5 + 0.2};
+    `;
+    particleContainer.appendChild(p);
+  }
+
+
+  /* ========================================================
+     5. SCROLL REVEAL — Intersection Observer
+     ======================================================== */
+  const revealEls = document.querySelectorAll(
+    '.reveal-up, .reveal-left, .reveal-right, .reveal-fade'
+  );
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+
+        // Animate section headings underline
+        const heading = entry.target.querySelector('.section-heading');
+        if (heading) {
+          setTimeout(() => heading.classList.add('animated'), 200);
+        }
+        // If the element itself is a heading
+        if (entry.target.classList.contains('section-heading')) {
+          entry.target.classList.add('animated');
+        }
+
+        revealObserver.unobserve(entry.target); // Only trigger once
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -60px 0px',
+  });
+
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // Also observe section headings standalone
+  document.querySelectorAll('.section-heading').forEach(h => {
+    const headingObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+          headingObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    headingObserver.observe(h);
+  });
+
+
+  /* ========================================================
+     6. MENU FILTER — Show / Hide by category
+     ======================================================== */
+  const filterBtns  = document.querySelectorAll('.filter-btn');
+  const menuCards   = document.querySelectorAll('.menu-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Update active button
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+
+      menuCards.forEach(card => {
+        const category = card.dataset.category;
+        if (filter === 'all' || category === filter) {
+          card.classList.remove('hidden');
+          // Re-trigger entrance animation
+          card.style.animation = 'none';
+          card.offsetHeight; // reflow
+          card.style.animation = '';
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+
+  /* ========================================================
+     7. TESTIMONIAL SLIDER — Auto + Manual
+     ======================================================== */
+  const track       = document.getElementById('testimonialTrack');
+  const slides      = track.querySelectorAll('.testimonial-slide');
+  const dotsContainer = document.getElementById('testimonialDots');
+  const prevBtn     = document.getElementById('prevBtn');
+  const nextBtn     = document.getElementById('nextBtn');
+
+  let current   = 0;
+  let autoTimer;
+  const TOTAL   = slides.length;
+  const AUTO_DELAY = 5000;
+
+  // Create dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToSlide(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  function goToSlide(index) {
+    current = (index + TOTAL) % TOTAL;
+    track.style.transform = `translateX(-${current * 100}%)`;
+
+    // Update dots
+    dotsContainer.querySelectorAll('.dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function nextSlide() { goToSlide(current + 1); }
+  function prevSlide() { goToSlide(current - 1); }
+
+  function startAuto() {
+    autoTimer = setInterval(nextSlide, AUTO_DELAY);
+  }
+
+  function stopAuto() {
+    clearInterval(autoTimer);
+  }
+
+  // Manual controls pause auto, then resume
+  nextBtn.addEventListener('click', () => {
+    stopAuto();
+    nextSlide();
+    startAuto();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    stopAuto();
+    prevSlide();
+    startAuto();
+  });
+
+  // Touch / swipe support
+  let touchStartX = 0;
+  track.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+    stopAuto();
+  }, { passive: true });
+
+  track.addEventListener('touchend', e => {
+    const delta = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(delta) > 40) {
+      delta > 0 ? nextSlide() : prevSlide();
+    }
+    startAuto();
+  }, { passive: true });
+
+  startAuto();
+
+
+  /* ========================================================
+     8. CONTACT FORM — Simulated submit feedback
+     ======================================================== */
+  const form        = document.getElementById('contactForm');
+  const formSuccess = document.getElementById('formSuccess');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    // Basic validation
+    const requiredFields = form.querySelectorAll('[required]');
+    let valid = true;
+
+    requiredFields.forEach(field => {
+      if (!field.value.trim()) {
+        field.style.borderColor = '#c0392b';
+        valid = false;
+        setTimeout(() => { field.style.borderColor = ''; }, 2500);
+      }
+    });
+
+    if (!valid) return;
+
+    // Simulate submission
+    const submitBtn = form.querySelector('[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.querySelector('span').textContent = 'Sending…';
+
+    setTimeout(() => {
+      submitBtn.style.display = 'none';
+      formSuccess.classList.add('show');
+      form.reset();
+    }, 1200);
+  });
+
+
+  /* ========================================================
+     9. GALLERY — Lightbox-style overlay (simple)
+     ======================================================== */
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  galleryItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('img');
+      const label = item.querySelector('.gallery-overlay span').textContent;
+
+      // Build lightbox
+      const lb = document.createElement('div');
+      lb.id = 'lightbox';
+      lb.style.cssText = `
+        position: fixed; inset: 0; z-index: 9000;
+        background: rgba(28,16,7,0.92);
+        display: flex; align-items: center; justify-content: center;
+        padding: 2rem;
+        animation: lbFadeIn 0.3s ease;
+        cursor: zoom-out;
+      `;
+
+      const lbImg = document.createElement('img');
+      lbImg.src = img.src;
+      lbImg.alt = label;
+      lbImg.style.cssText = `
+        max-width: 90vw; max-height: 85vh;
+        border-radius: 12px;
+        box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        object-fit: contain;
+        animation: lbScaleIn 0.3s cubic-bezier(0.4,0,0.2,1);
+      `;
+
+      const lbClose = document.createElement('button');
+      lbClose.innerHTML = '&times;';
+      lbClose.style.cssText = `
+        position: absolute; top: 1.5rem; right: 2rem;
+        font-size: 2.5rem; color: white; background: none; border: none;
+        cursor: pointer; line-height: 1; font-family: sans-serif;
+        opacity: 0.7; transition: opacity 0.2s;
+      `;
+      lbClose.onmouseenter = () => lbClose.style.opacity = '1';
+      lbClose.onmouseleave = () => lbClose.style.opacity = '0.7';
+
+      lb.appendChild(lbImg);
+      lb.appendChild(lbClose);
+      document.body.appendChild(lb);
+
+      // Inject keyframes once
+      if (!document.getElementById('lbStyles')) {
+        const style = document.createElement('style');
+        style.id = 'lbStyles';
+        style.textContent = `
+          @keyframes lbFadeIn  { from { opacity: 0; } to { opacity: 1; } }
+          @keyframes lbScaleIn { from { transform: scale(0.88); } to { transform: scale(1); } }
+        `;
+        document.head.appendChild(style);
+      }
+
+      const closeLb = () => {
+        lb.style.opacity = '0';
+        lb.style.transition = 'opacity 0.2s';
+        setTimeout(() => lb.remove(), 200);
+      };
+
+      lb.addEventListener('click', closeLb);
+      lbClose.addEventListener('click', e => { e.stopPropagation(); closeLb(); });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeLb();
+      }, { once: true });
+    });
+  });
+
+
+  /* ========================================================
+     10. NAVBAR — Close overlay when clicking outside
+     ======================================================== */
+  document.addEventListener('click', e => {
+    if (
+      navMenu.classList.contains('open') &&
+      !navMenu.contains(e.target) &&
+      !navToggle.contains(e.target)
+    ) {
+      navMenu.classList.remove('open');
+      navToggle.classList.remove('open');
+    }
+  });
+
+
+  /* ========================================================
+     INIT
+     ======================================================== */
+  handleNavbarScroll(); // Run once on load in case page is already scrolled
+  updateActiveLink();
+
+  console.log('%c☕ HSVV COFFEE CO. — Crafted with Soul', [
+    'color: #8b4f2a',
+    'font-size: 14px',
+    'font-weight: bold',
+  ].join(';'));
+
+});
+
+</script>
